@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esame Where Tech Login Page</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-title">Weather Hub</div>
+        <form class="form-style" method="POST" id="formLogin" onsubmit="getLoginInput()">
+            <label for="email">Email</label><br>
+            <input type="email" id="email" name="email" placeholder="Email"><br>
+            <label for="password">Password</label><br>
+            <input type="password" id="password" name="password" placeholder="password"><br><br>
+            <input type="submit" value="Login" class="login-btn">
+
+        </form>
+    </div>
+
+    <script>
+        function getLoginInput() {
+            var email = document.getElementById('email');
+            var password = document.getElementById('password');
+
+            if(!email[0].value) {
+                return;
+            }
+
+            if(!password[0].value){
+                return;
+            }
+
+            document.getElementById("formLogin").formLogin.submit();
+        }
+    </script>
+</body>
+
+</html>

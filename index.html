@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.27/"></script>
     <script>
-        require(["esri/config", "esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/GraphicsLayer"], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+        require(["esri/config", "esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/GraphicsLayer", "esri/PopupTemplate", "esri/core/reactiveUtils"], function(esriConfig,Map, MapView, Graphic, GraphicsLayer, PopupTemplate, reactiveUtils) {
             esriConfig.apiKey = "AAPKab0dcd0c1ee844bd9bd840fe265ea8008dAyl94aHSI6t8Nx3UBlL5ya7TDi7CrHQrFYPhphv9mLGg6aUfDe29EsXmgSQ2T3";
 
             const map = new Map({
@@ -75,12 +75,42 @@
                 
                 const pointGraphic = new Graphic({
                 geometry: pointsMap[i],
-                symbol: simpleMarkerSymbol
+                symbol: simpleMarkerSymbol,
                 });
 
                 graphicsLayer.add(pointGraphic);
 
             }
+
+           /*  reactiveUtils.watch(
+            () => view.popup.selectedFeature,
+            (graphic) => {
+                debugger
+                if (graphic) {
+                    debugger
+                // Set the action's visible property to true if the 'website' field value is not null, otherwise set it to false
+                const graphicTemplate = graphic.getEffectivePopupTemplate();
+                graphicTemplate.actions.items[0].visible = graphic.attributes.website ? true : false;
+                }
+            }
+            ); */
+
+            view.on("click", (event) => {
+            // only include graphics from hurricanesLayer in the hitTest
+            const opts = {
+                include: graphicsLayer
+            }
+            view.hitTest(event, opts).then((response) => {
+                debugger
+                // check if a feature is returned from the hurricanesLayer
+                if (response.results.length) {
+                    debugger
+                const graphic = response.results[0].graphic;
+                // do something with the graphic
+                }
+            });
+            });
+
         });
     </script>
 </head>
