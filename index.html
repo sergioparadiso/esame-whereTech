@@ -19,24 +19,14 @@
 
             const view = new MapView({
             map: map,
-            center: [-118.805, 34.027], // Longitude, latitude
-            zoom: 13, // Zoom level
+            center: [9.0953321, 45.4628246], // Longitude, latitude
+            zoom: 10, // Zoom level
             container: "viewDiv" // Div element
             });
 
             const graphicsLayer = new GraphicsLayer();
             map.add(graphicsLayer);
 
-            const point = { //Create a point
-            type: "point",
-            longitude: -118.80657463861,
-            latitude: 34.0005930608889
-            };
-            const pointMilan = { //Create a point
-            type: "point",
-            longitude: -118.80657463861,
-            latitude: 34.0005930608889
-            };
 
             const simpleMarkerSymbol = {
                 type: "simple-marker",
@@ -47,15 +37,50 @@
                 }
             };
                     
-            const pointGraphic = new Graphic({
-                geometry: point,
+
+            const pointsMap = [
+                {
+                    type: "point",
+                    longitude: 9.0953321,
+                    latitude: 45.4628246
+                },
+                {
+                    type: "point",
+                    longitude: 12.3711915,
+                    latitude: 41.9102088,
+                },
+                {
+                    type: "point",
+                    longitude: 14.0907148,
+                    latitude: 40.8539584,
+                },
+                {
+                    type: "point",
+                    longitude: 11.1997685,
+                    latitude: 43.7800127,
+                },
+                {
+                    type: "point",
+                    longitude: 12.222527,
+                    latitude: 45.4046658,
+                },
+                {
+                    type: "point",
+                    longitude: 13.2014002,
+                    latitude: 38.1405756,
+                },
+            ]
+
+            for (let i = 0; i < pointsMap.length; i++) {
+                
+                const pointGraphic = new Graphic({
+                geometry: pointsMap[i],
                 symbol: simpleMarkerSymbol
-            });
-            const milano = new Graphic({
-                geometry: point,
-                symbol: simpleMarkerSymbol
-            });
-            graphicsLayer.add(pointGraphic);
+                });
+
+                graphicsLayer.add(pointGraphic);
+
+            }
         });
     </script>
 </head>
