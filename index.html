@@ -4,11 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esame</title>
-    <link rel="stylesheet" href="../esame-whereTech/style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.27/"></script>
+    <script>
+        require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView) {
+            esriConfig.apiKey = "AAPKab0dcd0c1ee844bd9bd840fe265ea8008dAyl94aHSI6t8Nx3UBlL5ya7TDi7CrHQrFYPhphv9mLGg6aUfDe29EsXmgSQ2T3";
+
+            const map = new Map({
+            basemap: "arcgis-topographic" // Basemap layer service
+            });
+
+            const view = new MapView({
+            map: map,
+            center: [-118.805, 34.027], // Longitude, latitude
+            zoom: 13, // Zoom level
+            container: "viewDiv" // Div element
+            });
+            
+        });
+    </script>
 </head>
 <body>
-    
+    <div class="w-100 h-100">
+        <div></div>
+        <div id="viewDiv"></div>
+    </div>
 </body>
 </html>
