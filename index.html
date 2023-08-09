@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.27/"></script>
     <script>
-        require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView) {
+        require(["esri/config", "esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/GraphicsLayer"], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
             esriConfig.apiKey = "AAPKab0dcd0c1ee844bd9bd840fe265ea8008dAyl94aHSI6t8Nx3UBlL5ya7TDi7CrHQrFYPhphv9mLGg6aUfDe29EsXmgSQ2T3";
 
             const map = new Map({
@@ -23,14 +23,46 @@
             zoom: 13, // Zoom level
             container: "viewDiv" // Div element
             });
-            
+
+            const graphicsLayer = new GraphicsLayer();
+            map.add(graphicsLayer);
+
+            const point = { //Create a point
+            type: "point",
+            longitude: -118.80657463861,
+            latitude: 34.0005930608889
+            };
+            const pointMilan = { //Create a point
+            type: "point",
+            longitude: -118.80657463861,
+            latitude: 34.0005930608889
+            };
+
+            const simpleMarkerSymbol = {
+                type: "simple-marker",
+                color: [226, 119, 40],  // Orange
+                outline: {
+                    color: [255, 255, 255], // White
+                    width: 1
+                }
+            };
+                    
+            const pointGraphic = new Graphic({
+                geometry: point,
+                symbol: simpleMarkerSymbol
+            });
+            const milano = new Graphic({
+                geometry: point,
+                symbol: simpleMarkerSymbol
+            });
+            graphicsLayer.add(pointGraphic);
         });
     </script>
 </head>
 <body>
-    <div class="w-100 h-100">
-        <div></div>
-        <div id="viewDiv"></div>
+    <div class="w-100 h-100 d-flex">
+        <div class="w-25 h-100 bg-primary"></div>
+        <div id="viewDiv" class="m-0 p-0 w-75 h-100"></div>
     </div>
 </body>
 </html>
